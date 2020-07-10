@@ -1,10 +1,9 @@
 # Build the docker container and push it to the GitLab Container Registry
 # Source: https://docs.gitlab.com/ee/ci/docker/using_kaniko.html
-build-and-push-container:
+.build-and-push-container:
  image:
    name: gcr.io/kaniko-project/executor:debug
    entrypoint: [""]
- stage: build-and-push-container
  script:
    - echo "Building and pushing the image to $CI_REGISTRY_IMAGE"
    - mkdir -p /kaniko/.docker
