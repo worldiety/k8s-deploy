@@ -13,7 +13,7 @@
 # K8S_USER_TOKEN=CHANGEME
 # 
 # It can be used like this:
-#   docker run --env-file .env test ./fetch-logs.sh
+#   docker run --env-file .env worldiety/k8s-deploy:latest ./fetch-logs.sh
 
 
 # Check if all variables exist
