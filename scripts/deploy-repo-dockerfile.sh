@@ -32,15 +32,15 @@ kubectl config set-context --cluster=$K8S_CLUSTER_NAME --user=$K8S_USER_NAME $K8
 kubectl config use-context $K8S_USER_NAME
 
 # Deploy the application
-helm upgrade --install --cleanup-on-fail --atomic
-    --namespace "${NAMESPACE}"
-    -f final-deployment-values.yaml
-    --set name=${PROJECT_NAME}
-    --set namespace=${NAMESPACE}
-    --set buildtype=${CI_ENVIRONMENT_SLUG}
-    --set gitlabImage.registry=${CI_REGISTRY}
-    --set gitlabImage.repository=${CI_REGISTRY_IMAGE}
-    --set gitlabImage.tag=${CI_COMMIT_REF_NAME}
-    --set gitlabImage.user=${CI_DEPLOY_USER}
-    --set gitlabImage.password=${CI_DEPLOY_PASSWORD}
+helm upgrade --install --cleanup-on-fail --atomic \
+    --namespace "${NAMESPACE}" \
+    -f final-deployment-values.yaml \
+    --set name=${PROJECT_NAME} \
+    --set namespace=${NAMESPACE} \
+    --set buildtype=${CI_ENVIRONMENT_SLUG} \
+    --set gitlabImage.registry=${CI_REGISTRY} \
+    --set gitlabImage.repository=${CI_REGISTRY_IMAGE} \
+    --set gitlabImage.tag=${CI_COMMIT_REF_NAME} \
+    --set gitlabImage.user=${CI_DEPLOY_USER} \
+    --set gitlabImage.password=${CI_DEPLOY_PASSWORD} \
     "${PROJECT_NAME}" helm-charts/project-template/
