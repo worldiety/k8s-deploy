@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# README
+#
+# In this script all environment variables which are used for the later deployment are checked.
+# The length of the Kubernet namespace is also checked. It must not be longer than 63 characters.
+
+
 # Check if all variables exist
 for VARIABLE in CI_DEPLOY_USER CI_DEPLOY_PASSWORD K8S_CLUSTER_NAME K8S_SERVER_URL K8S_CE_AUTH_DATA K8S_NAMESPACE K8S_USER_NAME K8S_USER_TOKEN
 do

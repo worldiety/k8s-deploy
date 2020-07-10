@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# README
+#
+# This script contains the wdy standard deployment.
+# It assumes a docker file in the root of the repository.
+# All environment variables from the `validate-default-env-vars.sh` script are required.
+
+
 PROJECT_NAME=${CI_PROJECT_NAME}-${CI_ENVIRONMENT_SLUG}
 NAMESPACE=${K8S_NAMESPACE}
 
