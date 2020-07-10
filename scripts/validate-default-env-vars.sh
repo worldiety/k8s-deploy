@@ -7,17 +7,14 @@
 
 
 # Check if all variables exist
-for VARIABLE in CI_DEPLOY_USER CI_DEPLOY_PASSWORD K8S_CLUSTER_NAME K8S_SERVER_URL K8S_CE_AUTH_DATA K8S_NAMESPACE K8S_USER_NAME K8S_USER_TOKEN
+for VARIABLE in CI_DEPLOY_USER CI_DEPLOY_PASSWORD CI_PROJECT_NAME CI_ENVIRONMENT_SLUG CI_REGISTRY CI_REGISTRY_IMAGE K8S_CLUSTER_NAME K8S_SERVER_URL K8S_CE_AUTH_DATA K8S_NAMESPACE K8S_USER_NAME K8S_USER_TOKEN
 do
     value=$(printenv $VARIABLE)
 
     if [ -z "$value" ]
     then
-        echo "Value2: $value"
         echo "$VARIABLE not available"
         exit 1
-    else 
-        echo "Found Variable: $VARIABLE=$value"
     fi
 done
 

@@ -40,7 +40,7 @@ helm upgrade --install --cleanup-on-fail --atomic \
     --set buildtype=${CI_ENVIRONMENT_SLUG} \
     --set gitlabImage.registry=${CI_REGISTRY} \
     --set gitlabImage.repository=${CI_REGISTRY_IMAGE} \
-    --set gitlabImage.tag=${CI_COMMIT_REF_NAME} \
+    --set gitlabImage.tag=${CI_ENVIRONMENT_SLUG} \
     --set gitlabImage.user=${CI_DEPLOY_USER} \
     --set gitlabImage.password=${CI_DEPLOY_PASSWORD} \
     "${PROJECT_NAME}" helm-charts/project-template/
