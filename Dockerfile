@@ -21,6 +21,9 @@ RUN apk add --update --no-cache curl && \
     mv kubectl /usr/bin/kubectl && \
     chmod +x /usr/bin/kubectl
 
+# Install tools that are used in the scripts
+RUN apk add --update --no-cache unzip perl gettext
+
 WORKDIR /apps
 
 COPY scripts/ .
