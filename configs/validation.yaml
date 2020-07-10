@@ -1,0 +1,32 @@
+# In this script all environment variables which are used for the later deployment are checked.
+# The length of the Kubernet namespace is also checked. It must not be longer than 63 characters.
+.validation:
+ image: worldiety/k8s-deploy:latest
+ script:
+   - |
+      # Check if all variables exist
+      for VARIABLE in CI_DEPLOY_USER CI_DEPLOY_PASSWORD CI_PROJECT_NAME CI_REGISTRY CI_REGISTRY_IMAGE K8S_CLUSTER_NAME K8S_SERVER_URL K8S_CE_AUTH_DATA K8S_NAMESPACE K8S_USER_NAME K8S_USER_TOKEN
+      do
+          value=$(printenv $VARIABLE)
+
+          if [ -z "$value" ]
+          then
+              echo "$VARIABLE not available"
+              exit 1
+          fi
+      done
+
+      # count namespace name length
+      NAMESPACE_LENGTH=$(echo "${K8S_NAMESPACE}" | wc -c)
+
+      # Check if the length of the namespace name is to long. If true the ci will abort
+      if [ $NAMESPACE_LENGTH -ge 63 ]
+      then 
+          echo "Namespace too long!"
+          echo "Length must be lower than 63, currently: $NAMESPACE_LENGTH"
+          echo "Namespace Name: $K8S_NAMESPACE"
+          exit 1
+      fi
+
+      # All variables set - you are ready to go
+      echo "\nAll variables are set"

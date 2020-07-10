@@ -10,6 +10,12 @@
 PROJECT_NAME=${CI_PROJECT_NAME}-${CI_ENVIRONMENT_SLUG}
 NAMESPACE=${K8S_NAMESPACE}
 
+if [ -z "${CI_ENVIRONMENT_SLUG}" ]
+then
+    echo "CI_ENVIRONMENT_SLUG not available"
+    exit 1
+fi
+
 # Print the namespace and domain in the console
 echo "deployment namespace '${NAMESPACE}'"
 DOMAIN_PREFIX=${NAMESPACE}-${CI_PROJECT_NAME}-${CI_ENVIRONMENT_SLUG}
@@ -40,7 +46,7 @@ helm upgrade --install --cleanup-on-fail --atomic \
     --set buildtype=${CI_ENVIRONMENT_SLUG} \
     --set gitlabImage.registry=${CI_REGISTRY} \
     --set gitlabImage.repository=${CI_REGISTRY_IMAGE} \
-    --set gitlabImage.tag=${CI_ENVIRONMENT_SLUG} \
+    --set gitlabImage.tag=${CI_COMMIT_REF_NAME} \
     --set gitlabImage.user=${CI_DEPLOY_USER} \
     --set gitlabImage.password=${CI_DEPLOY_PASSWORD} \
     "${PROJECT_NAME}" helm-charts/project-template/
