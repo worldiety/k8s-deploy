@@ -9,4 +9,4 @@
    - echo "Building and pushing the image to $CI_REGISTRY_IMAGE"
    - mkdir -p /kaniko/.docker
    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n $CI_REGISTRY_USER:$CI_REGISTRY_PASSWORD | base64)\"}}}" > /kaniko/.docker/config.json
-   - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME $ADDLATESTTAG $FORMATTEDTAGLIST $IMAGE_LABELS --label build-date=`date -Iseconds`
+   - /kaniko/executor $WDY_BUILD_ARGS --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME $ADDLATESTTAG $FORMATTEDTAGLIST $IMAGE_LABELS --label build-date=`date -Iseconds`
