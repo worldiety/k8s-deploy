@@ -28,5 +28,12 @@
           exit 1
       fi
 
+      # small life saver, since this may lead to long bug hunting
+      if [ -f "deployment-values.yml" ]
+      then
+          echo "Detected file deployment-values.yml, must be named deployment-values.yaml"
+          exit 1
+      fi
+
       # All variables set - you are ready to go
       echo "\nAll variables are set"
