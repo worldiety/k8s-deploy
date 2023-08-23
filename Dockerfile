@@ -1,7 +1,7 @@
 FROM alpine:3
 
-ENV HELM_VERSION=3.2.4
-ENV KUBECTL_VERSION=1.18.5
+ENV HELM_VERSION=3.12.3
+ENV KUBECTL_VERSION=1.26.6
 
 # Install helm (latest release)
 # ENV BASE_URL="https://storage.googleapis.com/kubernetes-helm"
