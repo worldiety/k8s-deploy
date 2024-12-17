@@ -1,7 +1,7 @@
 FROM alpine:3
 
-ENV HELM_VERSION=3.12.3
-ENV KUBECTL_VERSION=1.26.6
+ENV HELM_VERSION=3.16.4
+ENV KUBECTL_VERSION=1.29.12
 
 # Install helm (latest release)
 # ENV BASE_URL="https://storage.googleapis.com/kubernetes-helm"
@@ -17,7 +17,7 @@ RUN apk add --update --no-cache curl ca-certificates bash && \
 
 # Install kubectl (same version of aws esk)
 RUN apk add --update --no-cache curl && \
-    curl -LO https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl && \
+    curl -LO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl"  && \
     mv kubectl /usr/bin/kubectl && \
     chmod +x /usr/bin/kubectl
 
